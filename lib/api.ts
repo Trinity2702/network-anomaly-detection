@@ -1,7 +1,7 @@
 // API client for communicating with the Python backend
 
 // Base URL for the API
-const API_BASE_URL = "http://localhost:8000"
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL!
 
 // Function to detect anomalies using the REST API
 export async function detectAnomalies(trafficData: any[]) {
@@ -70,7 +70,11 @@ export function connectWebSocket(onMessage: (data: any) => void) {
   isConnecting = true
   onMessageCallback = onMessage
 
-  socket = new WebSocket(`ws://localhost:8000/ws`)
+  const WS_URL = process.env.NEXT_PUBLIC_API_URL!
+  .replace("https://", "wss://")
+  .replace("http://", "ws://")
+
+socket = new WebSocket(`${WS_URL}/ws`)
 
   socket.onopen = () => {
     console.log("WebSocket connected")
