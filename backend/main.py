@@ -16,9 +16,8 @@ from sklearn.ensemble import IsolationForest
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-from .data_generator import generate_normal_traffic, inject_anomaly
-from .preprocessor import preprocess_data_point
-
+from data_generator import generate_normal_traffic, inject_anomaly
+from preprocessor import preprocess_data_point
 # ----------------------------
 # App and CORS
 # ----------------------------
