@@ -5,7 +5,9 @@ export async function POST(request: Request) {
     const body = await request.json()
 
     // Forward the request to your Python backend
-    const response = await fetch("http://your-python-backend-url/detect", {
+    const response = await fetch(
+  `${process.env.NEXT_PUBLIC_API_URL}/detect`,
+{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
