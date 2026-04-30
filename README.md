@@ -43,7 +43,7 @@ npm run dev
 http://localhost:3000
 
 
-### Step 2: Start Backend
+### 🔹 Step 2: Start Backend
 
 Open a new terminal
 
@@ -67,7 +67,7 @@ source .venv/bin/activate
 
 ---
 
-🔗 Frontend ↔ Backend Connection
+## 🔗 Frontend ↔ Backend Connection
 
 The frontend communicates with backend using:
 lib/api-client.ts
@@ -75,7 +75,10 @@ lib/api-client.ts
 Make sure this file contains:
  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
 
-🌐 Deployment
+---
+
+
+##🌐 Deployment
   Frontend: Deployed on Vercel
   Backend: Deployed on Railway
 
@@ -83,7 +86,9 @@ In production, set environment variable:
 NEXT_PUBLIC_API_URL=https://your-backend-url
 
 ---
-⚡ Features
+
+
+## ⚡ Features
 🔴 Real-time traffic simulation using WebSocket
 🧠 Multiple ML models:
 1. Autoencoder
@@ -97,7 +102,9 @@ NEXT_PUBLIC_API_URL=https://your-backend-url
 🔄 Automatic model switching
 🧪 Fresh dataset generated for every training run
 
-🔄 How the System Works
+---
+
+##  🔄 How the System Works
   1. Backend generates synthetic network traffic
   2. WebSocket continuously streams data
   3. Frontend receives live data
@@ -107,7 +114,7 @@ NEXT_PUBLIC_API_URL=https://your-backend-url
 
 ---
 
-📌 Key Components
+##   📌 Key Components
 1. Backend (FastAPI)
   - /api/detect: Receives JSON data for detection
   - /api/train/{model_type}: Triggers model training
@@ -124,7 +131,9 @@ NEXT_PUBLIC_API_URL=https://your-backend-url
   - Threshold adjustment
   - Live WebSocket updates
 
-⚠️ Important Notes
+---
+  
+##  ⚠️ Important Notes
 -Backend must be running before frontend features work
 -Click Start Analysis to begin streaming
 -Train at least one model (e.g., Autoencoder)
