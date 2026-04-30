@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { formatSafeNumber } from "@/lib/utils"
 
 interface TrafficChartProps {
   data: any[]
@@ -224,7 +225,7 @@ function CombinedChart({ data, metrics, chartType }: CombinedChartProps) {
           .attr("stroke", "#fff")
           .attr("stroke-width", 0.5)
           .append("title")
-          .text((d) => `${metric}: ${d[metric].toFixed(2)} at ${d.timestamp.toLocaleTimeString()}`)
+          .text((d) => `${metric}: ${formatSafeNumber(d[metric], 2)} at ${d.timestamp.toLocaleTimeString()}`)
       }
 
       const lastValue = data[data.length - 1][metric]
@@ -233,7 +234,7 @@ function CombinedChart({ data, metrics, chartType }: CombinedChartProps) {
         .attr("y", 10 + i * 28)
         .attr("font-size", "10px")
         .attr("fill", colorMap[metric])
-        .text(`Current: ${Number(lastValue).toFixed(2)}`)
+        .text(`Current: ${formatSafeNumber(lastValue, 2)}`)
     })
 
     // Compact boxed legend on the right (no overlap)
@@ -395,7 +396,7 @@ function MetricChart({ data, metricId, chartType }: MetricChartProps) {
         .attr("stroke", "#fff")
         .attr("stroke-width", 0.5)
         .append("title")
-        .text((d) => `${metricId}: ${d[metricId].toFixed(2)} at ${d.timestamp.toLocaleTimeString()}`)
+        .text((d) => `${metricId}: ${formatSafeNumber(d[metricId], 2)} at ${d.timestamp.toLocaleTimeString()}`)
     }
   }, [data, metricId, chartType])
 
