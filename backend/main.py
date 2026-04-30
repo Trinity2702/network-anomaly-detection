@@ -16,7 +16,7 @@ from sklearn.ensemble import IsolationForest
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-from data_generator import generate_normal_traffic, inject_anomaly
+from data_generator import generate_normal_traffic, inject_anomaly, PROTOCOLS
 from preprocessor import preprocess_data_point
 # ----------------------------
 # App and CORS
@@ -167,10 +167,16 @@ def train_model_task(
 
         # Build features (numeric) and fit scaler fresh each run
         X = df.copy()
-        # Keep only numeric columns for training (protocol is categorical)
+        # One-hot encode the Protocol Type column using pandas
+        if "Protocol Type" in X.columns:
+            # Enforce the known categories so that all dummy columns are created even if missing in this batch
+            X["Protocol Type"] = pd.Categorical(X["Protocol Type"], categories=PROTOCOLS)
+            # generate dummies like "Protocol Type_TCP", "Protocol Type_UDP", etc.
+            X = pd.get_dummies(X, columns=["Protocol Type"], drop_first=False, dtype=float)
+
+        # Drop any remaining object columns to be safe
         for col in list(X.columns):
             if X[col].dtype == object:
-                # drop strings for training (handled at runtime via preprocessor/protocol mapping)
                 X.drop(columns=[col], inplace=True)
 
         feature_list = list(X.columns)
