@@ -16,15 +16,18 @@ It consists of:
 ---
 
 ## 🧱 Project Structure
+
+```text
 root/
 │
-├── app/ , components/ , lib/ # Frontend (Next.js)
-├── backend/ # FastAPI backend
-│ ├── main.py # API + WebSocket server
-│ ├── data_generator.py # Generates synthetic traffic
-│ ├── preprocessor.py # Data preprocessing
-│ ├── models/ # ML models
-│ └── requirements.txt
+├── app/, components/, lib/    # Frontend (Next.js)
+├── backend/                   # FastAPI backend
+│   ├── main.py                # API + WebSocket server
+│   ├── data_generator.py      # Generates synthetic traffic
+│   ├── preprocessor.py        # Data preprocessing
+│   ├── models/                # ML models
+│   └── requirements.txt
+```
 
 
 ---
@@ -38,52 +41,63 @@ Open terminal in project root:
 ```bash
 npm install
 npm run dev
+```
 
-👉 Frontend runs at:
-http://localhost:3000
+👉 **Frontend runs at:** `http://localhost:3000`
 
 
 ### 🔹 Step 2: Start Backend
 
 Open a new terminal
 
-1. Create virtual environment
+**1. Create virtual environment**
 
-### Windows (PowerShell):
- py -m venv .venv
+**Windows (PowerShell):**
+```powershell
+py -m venv .venv
 .\.venv\Scripts\Activate.ps1
-### macOS/Linux:
+```
+
+**macOS/Linux:**
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
 
-2. Install dependencies
-  cd backend
-  pip install -r backend/requirements.txt
+**2. Install dependencies**
+```bash
+cd backend
+pip install -r backend/requirements.txt
+```
 
-3. Run backend
-  uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
-👉 Backend runs at:
-  http://localhost:8000
+**3. Run backend**
+```bash
+uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+👉 **Backend runs at:** `http://localhost:8000`
 
 ---
 
 ## 🔗 Frontend ↔ Backend Connection
 
 The frontend communicates with backend using:
-lib/api-client.ts
+`lib/api-client.ts`
 
 Make sure this file contains:
- const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+```typescript
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+```
 
 ---
 
 
-##🌐 Deployment
-  Frontend: Deployed on Vercel
-  Backend: Deployed on Railway
+## 🌐 Deployment
+- **Frontend:** Deployed on Vercel
+- **Backend:** Deployed on Railway
 
 In production, set environment variable:
-NEXT_PUBLIC_API_URL=https://your-backend-url
+`NEXT_PUBLIC_API_URL=https://your-backend-url`
 
 ---
 
@@ -133,8 +147,8 @@ NEXT_PUBLIC_API_URL=https://your-backend-url
 
 ---
   
-##  ⚠️ Important Notes
--Backend must be running before frontend features work
--Click Start Analysis to begin streaming
--Train at least one model (e.g., Autoencoder)
--If model is not trained → rule-based detection is used
+## ⚠️ Important Notes
+- Backend must be running before frontend features work
+- Click **Start Analysis** to begin streaming
+- Train at least one model (e.g., Autoencoder)
+- If model is not trained → rule-based detection is used
